@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>신연진의 프로필 | (●'◡'●)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-hover: #4f46e5;
+      --accent: #ec4899;
+      --bg: #0f172a;
+      --card-bg: rgba(30, 41, 59, 0.75);
+      --card-border: rgba(255, 255, 255, 0.1);
+      --text: #f8fafc;
+      --text-sub: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+      background: radial-gradient(circle at 20% 20%, #1e1b4b 0%, var(--bg) 60%),
+                  radial-gradient(circle at 80% 80%, #3b0764 0%, transparent 50%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 520px;
+      width: 100%;
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: 28px;
+      padding: 40px 32px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                  0 0 30px rgba(99, 102, 241, 0.15);
+      animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .profile-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 110px;
+      height: 110px;
+      margin: 0 auto 20px;
+    }
+
+    .avatar {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+      user-select: none;
+      transition: transform 0.3s ease;
+    }
+
+    .avatar-wrapper:hover .avatar {
+      transform: scale(1.06) rotate(5deg);
+    }
+
+    .status-badge {
+      position: absolute;
+      bottom: 4px;
+      right: 4px;
+      background: #10b981;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 3px solid #1e293b;
+    }
+
+    .name-badge {
+      display: inline-block;
+      padding: 4px 14px;
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      color: #a5b4fc;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+      background: linear-gradient(to right, #ffffff, #cbd5e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .intro-text {
+      color: var(--text-sub);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .cards-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .info-card {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 18px;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      transition: all 0.25s ease;
+    }
+
+    .info-card:hover {
+      background: rgba(30, 41, 59, 0.8);
+      border-color: rgba(99, 102, 241, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    .icon-hobby {
+      background: linear-gradient(135deg, rgba(236, 72, 153, 0.2), rgba(236, 72, 153, 0.05));
+      border: 1px solid rgba(236, 72, 153, 0.3);
+    }
+
+    .icon-emoji {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(99, 102, 241, 0.05));
+      border: 1px solid rgba(99, 102, 241, 0.3);
+    }
+
+    .card-content {
+      flex: 1;
+    }
+
+    .card-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      color: var(--text-sub);
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      margin-bottom: 4px;
+    }
+
+    .card-value {
+      font-size: 17px;
+      font-weight: 700;
+      color: #f1f5f9;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tag {
+      font-size: 12px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #cbd5e1;
+      font-weight: 500;
+    }
+
+    /* Interactive Emoji Card */
+    .interactive-emoji {
+      cursor: pointer;
+      position: relative;
+    }
+
+    .emoji-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(99, 102, 241, 0.2);
+      border: 1px dashed rgba(165, 180, 252, 0.5);
+      padding: 4px 12px;
+      border-radius: 12px;
+      color: #c7d2fe;
+      font-family: monospace;
+      font-size: 18px;
+      font-weight: 700;
+      transition: all 0.2s;
+    }
+
+    .interactive-emoji:hover .emoji-pill {
+      background: rgba(99, 102, 241, 0.35);
+      border-color: #a5b4fc;
+      transform: scale(1.05);
+    }
+
+    .click-hint {
+      font-size: 11px;
+      color: #94a3b8;
+      margin-left: auto;
+      opacity: 0.8;
+    }
+
+    .tags-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .tag-badge {
+      padding: 6px 14px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      font-size: 13px;
+      color: #cbd5e1;
+      transition: background 0.2s;
+    }
+
+    .tag-badge:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(30px);
+      background: #10b981;
+      color: #ffffff;
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 28px;
+      font-size: 12px;
+      color: #64748b;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="profile-header">
+      <div class="avatar-wrapper">
+        <div class="avatar">🎮</div>
+        <div class="status-badge" title="온라인"></div>
+      </div>
+      <span class="name-badge">Profile</span>
+      <h1>신연진</h1>
+      <p class="intro-text">
+        안녕하세요! 게임과 유쾌한 소통을 좋아하는<br />
+        신연진의 자기소개 페이지입니다.
+      </p>
+    </div>
+
+    <div class="cards-grid">
+      <!-- 취미 카드 -->
+      <div class="info-card">
+        <div class="card-icon icon-hobby">🕹️</div>
+        <div class="card-content">
+          <div class="card-title">Hobby</div>
+          <div class="card-value">
+            게임 <span class="tag">Gaming Life</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 이모지 카드 (클릭 시 복사 및 인터랙션) -->
+      <div class="info-card interactive-emoji" id="emojiCard" title="클릭해서 이모지 복사하기">
+        <div class="card-icon icon-emoji">✨</div>
+        <div class="card-content">
+          <div class="card-title">Favorite Emoji</div>
+          <div class="card-value">
+            <span class="emoji-pill" id="emojiText">(●'◡'●)</span>
+          </div>
+        </div>
+        <span class="click-hint">클릭해서 복사!</span>
+      </div>
+    </div>
+
+    <!-- 관심사 태그 -->
+    <div class="tags-container">
+      <span class="tag-badge">#신연진</span>
+      <span class="tag-badge">#게임좋아해요</span>
+      <span class="tag-badge">#미소만땅(●'◡'●)</span>
+      <span class="tag-badge">#소통환영</span>
+    </div>
+
+    <footer>
+      © 2026 신연진. All rights reserved.
+    </footer>
+
+    <!-- 알림 토스트 -->
+    <div class="toast" id="toast">
+      <span>(●'◡'●) 이모지가 클립보드에 복사되었습니다!</span>
+    </div>
+  </div>
+
+  <script>
+    const emojiCard = document.getElementById('emojiCard');
+    const toast = document.getElementById('toast');
+    let toastTimeout;
+
+    emojiCard.addEventListener('click', () => {
+      const emoji = "(●'◡'●)";
+      
+      // 클립보드 복사
+      navigator.clipboard.writeText(emoji).then(() => {
+        showToast();
+      }).catch(() => {
+        showToast();
+      });
+    });
+
+    function showToast() {
+      clearTimeout(toastTimeout);
+      toast.classList.add('show');
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2400);
+    }
+  </script>
+</body>
+</html>
